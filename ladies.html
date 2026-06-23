@@ -33,7 +33,7 @@
       padding: 20px 28px 40px;
     }
 
-    /* ----- NAVIGATION (maroon refined) ----- */
+    /* ----- NAVIGATION (maroon refined with hamburger) ----- */
     .navbar {
       display: flex;
       justify-content: space-between;
@@ -42,6 +42,7 @@
       border-bottom: 1px solid rgba(139, 30, 44, 0.12);
       flex-wrap: wrap;
       gap: 12px;
+      position: relative;
     }
 
     .logo-link {
@@ -96,11 +97,52 @@
       white-space: nowrap;
     }
 
+    /* Hamburger button */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 8px;
+      transition: background 0.2s;
+    }
+
+    .hamburger:hover {
+      background: rgba(139, 30, 44, 0.08);
+    }
+
+    .hamburger span {
+      display: block;
+      width: 28px;
+      height: 3px;
+      background: #2c0f0a;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      transform-origin: center;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 6px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -6px);
+    }
+
     .nav-links {
       display: flex;
       align-items: center;
       gap: 6px;
       flex-wrap: wrap;
+      transition: all 0.3s ease;
     }
 
     .nav-links a {
@@ -458,7 +500,7 @@
       font-size: 1.2rem;
     }
 
-    /* ----- responsive ----- */
+    /* ----- responsive with hamburger ----- */
     @media (max-width: 960px) {
       .product-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -471,6 +513,30 @@
       .ladies-hero .hero-emoji {
         display: none;
       }
+      .hamburger {
+        display: flex;
+      }
+      .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 4px;
+        padding: 16px 0 8px;
+        border-top: 1px solid rgba(139, 30, 44, 0.08);
+      }
+      .nav-links.open {
+        display: flex;
+      }
+      .nav-links a {
+        padding: 12px 16px;
+        border-radius: 12px;
+        width: 100%;
+        text-align: center;
+      }
+      .nav-links a i {
+        margin-right: 10px;
+      }
     }
 
     @media (max-width: 640px) {
@@ -479,14 +545,6 @@
       }
       .product-grid {
         grid-template-columns: 1fr;
-      }
-      .navbar {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 8px;
-      }
-      .nav-links {
-        justify-content: center;
       }
       .mpesa {
         flex-direction: column;
@@ -527,7 +585,15 @@
         <span class="tag">Stay Classy</span>
       </div>
     </a>
-    <div class="nav-links">
+
+    <!-- Hamburger Button -->
+    <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="nav-links" id="navLinks">
       <a href="index.html"><i class="fas fa-home"></i>Home</a>
       <a href="men.html"><i class="fas fa-male"></i>Men</a>
       <a href="ladies.html" class="active"><i class="fas fa-female"></i>Ladies</a>
@@ -644,6 +710,23 @@
 </div>
 
 <script>
+  // ----- Hamburger toggle -----
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const navLinks = document.getElementById('navLinks');
+
+  hamburgerBtn.addEventListener('click', function() {
+    this.classList.toggle('active');
+    navLinks.classList.toggle('open');
+  });
+
+  // Close menu when a link is clicked (for better UX)
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburgerBtn.classList.remove('active');
+      navLinks.classList.remove('open');
+    });
+  });
+
   // ----- Cart state -----
   let cart = [];
   const cartCountEl = document.getElementById('cartCount');
