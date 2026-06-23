@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leefashions · Contact Us</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background: #f8f6f3;
+      color: #1e1a17;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1240px;
+      margin: auto;
+      padding: 20px 28px 40px;
+    }
+
+    /* ----- NAVIGATION (matches main site) ----- */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0 16px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .logo-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: inherit;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      transition: opacity 0.2s;
+    }
+
+    .logo-link:hover {
+      opacity: 0.85;
+    }
+
+    .logo-img {
+      height: 44px;
+      width: auto;
+      display: block;
+      border-radius: 8px;
+      object-fit: contain;
+      background: #ffffff;
+      padding: 2px 6px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    .logo-text {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .logo-text .brand {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .logo-text .tag {
+      font-size: 12px;
+      font-weight: 500;
+      background: #1e1a17;
+      color: #fff;
+      padding: 4px 14px;
+      border-radius: 40px;
+      letter-spacing: 0.3px;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #2d2824;
+      font-weight: 500;
+      font-size: 0.95rem;
+      padding: 8px 16px;
+      border-radius: 40px;
+      transition: all 0.2s;
+    }
+
+    .nav-links a:hover {
+      background: #1e1a17;
+      color: #fff;
+    }
+
+    .nav-links a i {
+      margin-right: 6px;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a.active {
+      background: #1e1a17;
+      color: #fff;
+    }
+
+    /* ----- CONTACT HERO ----- */
+    .contact-hero {
+      background: linear-gradient(145deg, #0f2b3a 0%, #1f4a5e 100%);
+      color: white;
+      padding: 40px 44px;
+      border-radius: 32px;
+      margin: 32px 0 44px 0;
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.12);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .contact-hero::after {
+      content: "✉";
+      position: absolute;
+      right: 30px;
+      bottom: 10px;
+      font-size: 100px;
+      opacity: 0.06;
+      transform: rotate(-6deg);
+    }
+
+    .contact-hero h1 {
+      font-size: 2.6rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .contact-hero h1 i {
+      color: #fddb6d;
+      font-size: 2.4rem;
+    }
+
+    .contact-hero p {
+      font-size: 1.15rem;
+      opacity: 0.85;
+      margin-top: 6px;
+      font-weight: 300;
+    }
+
+    .contact-hero .badge {
+      display: inline-block;
+      background: #fddb6d;
+      color: #0f2b3a;
+      padding: 8px 24px;
+      border-radius: 60px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-top: 12px;
+      box-shadow: 0 6px 18px rgba(253, 219, 109, 0.3);
+    }
+
+    .contact-hero .hero-emoji {
+      font-size: 4rem;
+      opacity: 0.8;
+      background: rgba(255,255,255,0.06);
+      padding: 16px 24px;
+      border-radius: 60px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    /* ----- CONTENT LAYOUT ----- */
+    .contact-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 44px;
+      margin-top: 8px;
+    }
+
+    /* ----- CONTACT INFO CARDS ----- */
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .info-card {
+      background: white;
+      padding: 22px 28px;
+      border-radius: 24px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+      border: 1px solid rgba(0, 0, 0, 0.02);
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      transition: all 0.3s ease;
+    }
+
+    .info-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
+    }
+
+    .info-card .icon {
+      width: 52px;
+      height: 52px;
+      background: #f0edea;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      color: #c8553d;
+      flex-shrink: 0;
+    }
+
+    .info-card .details h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #1e1a17;
+    }
+
+    .info-card .details p {
+      color: #7a716b;
+      font-size: 0.95rem;
+      margin-top: 2px;
+    }
+
+    .info-card .details a {
+      color: #c8553d;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .info-card .details a:hover {
+      text-decoration: underline;
+    }
+
+    /* ----- CONTACT FORM ----- */
+    .contact-form {
+      background: white;
+      padding: 32px 34px 38px;
+      border-radius: 24px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+      border: 1px solid rgba(0, 0, 0, 0.02);
+    }
+
+    .contact-form h3 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: #1e1a17;
+    }
+
+    .contact-form .form-subhead {
+      color: #7a716b;
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: #2d2824;
+      margin-bottom: 6px;
+    }
+
+    .form-group label i {
+      color: #c8553d;
+      margin-right: 8px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 14px 18px;
+      border: 2px solid #ede9e4;
+      border-radius: 16px;
+      font-size: 0.95rem;
+      font-family: "Inter", sans-serif;
+      background: #fcfbfa;
+      transition: all 0.25s;
+      color: #1e1a17;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #c8553d;
+      background: #ffffff;
+      box-shadow: 0 0 0 4px rgba(200, 85, 61, 0.08);
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: #b3a8a0;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 16px;
+      background: #1e1a17;
+      color: white;
+      border: none;
+      border-radius: 60px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      font-family: "Inter", sans-serif;
+      box-shadow: 0 6px 20px rgba(30, 26, 23, 0.12);
+    }
+
+    .btn-submit:hover {
+      background: #c8553d;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(200, 85, 61, 0.25);
+    }
+
+    .btn-submit:active {
+      transform: scale(0.97);
+    }
+
+    .btn-submit i {
+      font-size: 1rem;
+    }
+
+    /* ----- M-PESA (matches main site) ----- */
+    .mpesa {
+      margin-top: 56px;
+      background: linear-gradient(135deg, #0f2b3a 0%, #1a3f4f 100%);
+      color: white;
+      padding: 28px 36px;
+      border-radius: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .mpesa h3 {
+      font-weight: 600;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .mpesa h3 i {
+      color: #fddb6d;
+    }
+
+    .mpesa p {
+      opacity: 0.8;
+      font-weight: 300;
+      margin-top: 4px;
+    }
+
+    .mpesa-logo {
+      height: 48px;
+      width: auto;
+      background: white;
+      padding: 6px 20px;
+      border-radius: 60px;
+      object-fit: contain;
+      display: block;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+
+    /* ----- TOAST ----- */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: #1e1a17;
+      color: white;
+      padding: 16px 34px;
+      border-radius: 60px;
+      font-weight: 500;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+      opacity: 0;
+      transition: all 0.4s ease;
+      pointer-events: none;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 0.95rem;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .toast i {
+      color: #fddb6d;
+      font-size: 1.3rem;
+    }
+
+    .toast.error {
+      background: #c8553d;
+    }
+
+    .toast.error i {
+      color: #fff;
+    }
+
+    /* ----- RESPONSIVE ----- */
+    @media (max-width: 960px) {
+      .contact-content {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .contact-hero {
+        padding: 32px 28px;
+        text-align: center;
+        justify-content: center;
+      }
+      .contact-hero .hero-emoji {
+        display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 16px;
+      }
+      .navbar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+      }
+      .nav-links {
+        justify-content: center;
+      }
+      .contact-hero h1 {
+        font-size: 2rem;
+      }
+      .contact-form {
+        padding: 24px 18px 28px;
+      }
+      .info-card {
+        padding: 16px 20px;
+      }
+      .mpesa {
+        flex-direction: column;
+        text-align: center;
+      }
+      .mpesa-logo {
+        height: 40px;
+        padding: 4px 14px;
+      }
+      .logo-img {
+        height: 36px;
+      }
+      .logo-text .brand {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- NAV -->
+  <div class="navbar">
+    <a href="index.html" class="logo-link">
+      <img src="logo.jpeg" alt="Leefashions" class="logo-img" />
+      <div class="logo-text">
+        <span class="brand">Leefashions</span>
+        <span class="tag">Stay Classy</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="index.html"><i class="fas fa-home"></i>Home</a>
+      <a href="men.html"><i class="fas fa-male"></i>Men</a>
+      <a href="ladies.html"><i class="fas fa-female"></i>Ladies</a>
+      <a href="kids.html"><i class="fas fa-child"></i>Kids</a>
+      <a href="cart.html"><i class="fas fa-shopping-bag"></i>Cart</a>
+      <a href="contact.html" class="active"><i class="fas fa-envelope"></i>Contact</a>
+    </div>
+  </div>
+
+  <!-- CONTACT HERO -->
+  <div class="contact-hero">
+    <div>
+      <h1>
+        <i class="fas fa-envelope"></i> Get in Touch
+      </h1>
+      <p>We'd love to hear from you — reach out anytime</p>
+      <span class="badge"><i class="fas fa-star"></i> we reply within 24hrs</span>
+    </div>
+    <div class="hero-emoji">💬</div>
+  </div>
+
+  <!-- CONTACT CONTENT -->
+  <div class="contact-content">
+
+    <!-- LEFT: INFO CARDS -->
+    <div class="contact-info">
+      <div class="info-card">
+        <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+        <div class="details">
+          <h4>Visit Our Store</h4>
+          <p>123 Fashion Avenue, Nairobi, Kenya</p>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="icon"><i class="fas fa-phone"></i></div>
+        <div class="details">
+          <h4>Call Us</h4>
+          <p><a href="tel:+254712345678">+254 712 345 678</a></p>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="icon"><i class="fas fa-envelope"></i></div>
+        <div class="details">
+          <h4>Email Us</h4>
+          <p><a href="mailto:hello@leefashions.co.ke">hello@leefashions.co.ke</a></p>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="icon"><i class="fas fa-clock"></i></div>
+        <div class="details">
+          <h4>Store Hours</h4>
+          <p>Mon–Sat: 9:00 AM – 7:00 PM<br />Sunday: Closed</p>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="icon"><i class="fas fa-share-alt"></i></div>
+        <div class="details">
+          <h4>Follow Us</h4>
+          <p style="display:flex;gap:12px;margin-top:4px;">
+            <a href="#" style="color:#1e1a17;font-size:1.2rem;"><i class="fab fa-instagram"></i></a>
+            <a href="#" style="color:#1e1a17;font-size:1.2rem;"><i class="fab fa-facebook"></i></a>
+            <a href="#" style="color:#1e1a17;font-size:1.2rem;"><i class="fab fa-twitter"></i></a>
+            <a href="#" style="color:#1e1a17;font-size:1.2rem;"><i class="fab fa-tiktok"></i></a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: CONTACT FORM -->
+    <div class="contact-form">
+      <h3>Send a Message</h3>
+      <p class="form-subhead">We'll get back to you as soon as possible</p>
+
+      <form id="contactForm" onsubmit="handleContact(event)">
+        <div class="form-group">
+          <label for="nameInput"><i class="fas fa-user"></i> Full Name</label>
+          <input type="text" id="nameInput" placeholder="Your full name" required />
+        </div>
+
+        <div class="form-group">
+          <label for="emailInput"><i class="fas fa-envelope"></i> Email Address</label>
+          <input type="email" id="emailInput" placeholder="you@example.com" required />
+        </div>
+
+        <div class="form-group">
+          <label for="subjectSelect"><i class="fas fa-tag"></i> Subject</label>
+          <select id="subjectSelect">
+            <option value="general">General Inquiry</option>
+            <option value="order">Order Help</option>
+            <option value="returns">Returns &amp; Exchanges</option>
+            <option value="wholesale">Wholesale / Bulk</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="messageInput"><i class="fas fa-comment"></i> Message</label>
+          <textarea id="messageInput" placeholder="How can we help you?" required></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit">
+          <i class="fas fa-paper-plane"></i> Send Message
+        </button>
+      </form>
+    </div>
+
+  </div>
+
+  <!-- M-PESA -->
+  <div class="mpesa">
+    <div>
+      <h3><i class="fas fa-mobile-alt"></i> Pay with M-Pesa</h3>
+      <p>Fast, secure checkout via mobile money</p>
+    </div>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/M-PESA_LOGO-01.svg" alt="M-Pesa" class="mpesa-logo">
+  </div>
+
+</div>
+
+<!-- TOAST -->
+<div id="toast" class="toast">
+  <i class="fas fa-check-circle"></i>
+  <span id="toastMessage">Message sent</span>
+</div>
+
+<script>
+  // ----- Toast elements -----
+  const toastEl = document.getElementById('toast');
+  const toastMsg = document.getElementById('toastMessage');
+
+  // ----- Handle contact form -----
+  function handleContact(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('nameInput').value.trim();
+    const email = document.getElementById('emailInput').value.trim();
+    const subject = document.getElementById('subjectSelect').value;
+    const message = document.getElementById('messageInput').value.trim();
+
+    // Basic validation
+    if (!name || !email || !message) {
+      showToast('⚠️ Please fill in all required fields', 'error');
+      return;
+    }
+
+    if (!email.includes('@') || !email.includes('.')) {
+      showToast('⚠️ Please enter a valid email address', 'error');
+      return;
+    }
+
+    // Simulate sending
+    const subjectLabels = {
+      'general': 'General Inquiry',
+      'order': 'Order Help',
+      'returns': 'Returns & Exchanges',
+      'wholesale': 'Wholesale / Bulk',
+      'other': 'Other'
+    };
+
+    showToast(`✅ Thanks ${name}! We've received your message regarding "${subjectLabels[subject] || 'Other'}"`);
+
+    // Reset form
+    document.getElementById('contactForm').reset();
+
+    // Disable button temporarily
+    const btn = document.querySelector('.btn-submit');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+
+    setTimeout(() => {
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+    }, 2500);
+  }
+
+  // ----- Show toast helper -----
+  function showToast(message, type = 'default') {
+    toastMsg.innerText = message;
+    toastEl.className = 'toast';
+    if (type === 'error') {
+      toastEl.classList.add('error');
+    }
+    toastEl.classList.add('show');
+
+    clearTimeout(window.toastTimeout);
+    window.toastTimeout = setTimeout(() => {
+      toastEl.classList.remove('show');
+      toastEl.classList.remove('error');
+    }, 4000);
+  }
+
+  // ----- Dismiss toast on click -----
+  toastEl.addEventListener('click', () => {
+    toastEl.classList.remove('show');
+    toastEl.classList.remove('error');
+    clearTimeout(window.toastTimeout);
+  });
+</script>
+
+</body>
+</html>

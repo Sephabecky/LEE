@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leefashions · Stay Classy</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background: #faf7f5;
+      color: #1e1a17;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1240px;
+      margin: auto;
+      padding: 20px 28px 40px;
+    }
+
+    /* ----- NAVIGATION (maroon accent) ----- */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0 16px;
+      border-bottom: 1px solid rgba(128, 0, 32, 0.12);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #2c0f0a;
+    }
+
+    .logo i {
+      color: #8b1e2c;
+      font-size: 28px;
+    }
+
+    .logo span {
+      font-size: 12px;
+      font-weight: 600;
+      background: #8b1e2c;
+      color: #fff;
+      padding: 4px 14px;
+      border-radius: 40px;
+      letter-spacing: 0.3px;
+      margin-left: 6px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #2d2824;
+      font-weight: 500;
+      font-size: 0.95rem;
+      padding: 8px 16px;
+      border-radius: 40px;
+      transition: all 0.25s;
+    }
+
+    .nav-links a:hover {
+      background: #8b1e2c;
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(139, 30, 44, 0.25);
+    }
+
+    .nav-links a i {
+      margin-right: 6px;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a.active {
+      background: #8b1e2c;
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(139, 30, 44, 0.3);
+    }
+
+    /* ----- HERO (maroon glow) ----- */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 40px;
+      margin-top: 40px;
+      align-items: center;
+      background: linear-gradient(145deg, #ffffff 0%, #fcf6f3 100%);
+      border-radius: 40px;
+      padding: 40px 44px;
+      box-shadow: 0 12px 40px rgba(139, 30, 44, 0.08);
+      border: 1px solid rgba(139, 30, 44, 0.08);
+    }
+
+    .hero h1 {
+      font-size: 52px;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+    }
+
+    .hero h1 span {
+      color: #8b1e2c;
+      position: relative;
+    }
+
+    .hero h1 span::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 4px;
+      width: 100%;
+      height: 12px;
+      background: rgba(139, 30, 44, 0.15);
+      border-radius: 20px;
+      z-index: -1;
+    }
+
+    .hero p {
+      margin: 18px 0 26px;
+      color: #5a5350;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      max-width: 420px;
+    }
+
+    .btn {
+      background: #8b1e2c;
+      color: white;
+      padding: 14px 36px;
+      border-radius: 60px;
+      display: inline-block;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.25s;
+      box-shadow: 0 8px 24px rgba(139, 30, 44, 0.25);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .btn i {
+      margin-right: 10px;
+    }
+
+    .btn:hover {
+      background: #a52a3a;
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 16px 36px rgba(139, 30, 44, 0.35);
+    }
+
+    .hero-image {
+      width: 100%;
+      border-radius: 28px;
+      object-fit: cover;
+      height: 280px;
+      background: #e8dbd6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: #b5aaa2;
+      overflow: hidden;
+      box-shadow: 0 8px 28px rgba(139, 30, 44, 0.12);
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 28px;
+    }
+
+    /* ----- CATEGORY FILTER (maroon pills) ----- */
+    .categories {
+      display: flex;
+      gap: 12px;
+      margin: 44px 0 32px;
+      flex-wrap: wrap;
+    }
+
+    .cat {
+      padding: 10px 28px;
+      border: 1px solid #dacbc4;
+      border-radius: 40px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.25s;
+      background: transparent;
+      color: #2d2824;
+      letter-spacing: 0.2px;
+    }
+
+    .cat:hover {
+      border-color: #8b1e2c;
+      color: #8b1e2c;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(139, 30, 44, 0.08);
+    }
+
+    .cat.active {
+      background: #8b1e2c;
+      color: white;
+      border-color: #8b1e2c;
+      box-shadow: 0 6px 18px rgba(139, 30, 44, 0.25);
+    }
+
+    /* ----- PRODUCT GRID (premium cards) ----- */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-top: 6px;
+    }
+
+    .card {
+      background: #ffffff;
+      padding: 18px 18px 24px;
+      border-radius: 28px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(139, 30, 44, 0.04);
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 48px rgba(139, 30, 44, 0.10);
+      border-color: rgba(139, 30, 44, 0.15);
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 20px;
+      height: 220px;
+      object-fit: cover;
+      background: #ede9e4;
+      transition: all 0.4s;
+    }
+
+    .card:hover img {
+      transform: scale(1.01);
+    }
+
+    .card h3 {
+      margin-top: 16px;
+      font-weight: 700;
+      font-size: 1.2rem;
+      letter-spacing: -0.3px;
+    }
+
+    .card .sub {
+      color: #8a7f79;
+      font-size: 0.85rem;
+      margin-top: 2px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .card .sub i {
+      color: #8b1e2c;
+      font-size: 0.7rem;
+    }
+
+    .price {
+      font-weight: 700;
+      font-size: 1.5rem;
+      margin: 10px 0 16px;
+      color: #1e1a17;
+    }
+
+    .price small {
+      font-weight: 400;
+      font-size: 0.8rem;
+      color: #8a7f79;
+      margin-left: 4px;
+    }
+
+    .add {
+      background: #8b1e2c;
+      color: white;
+      padding: 14px 16px;
+      text-align: center;
+      border-radius: 60px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      border: none;
+      font-size: 0.95rem;
+      font-family: "Inter", sans-serif;
+      box-shadow: 0 4px 12px rgba(139, 30, 44, 0.15);
+    }
+
+    .add i {
+      font-size: 1rem;
+    }
+
+    .add:hover {
+      background: #a52a3a;
+      transform: scale(1.02);
+      box-shadow: 0 8px 24px rgba(139, 30, 44, 0.30);
+    }
+
+    /* shoe count badge */
+    .shoe-count {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: rgba(139, 30, 44, 0.9);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    /* ----- M-PESA (maroon themed) ----- */
+    .mpesa {
+      margin-top: 56px;
+      background: linear-gradient(145deg, #1e0e0a 0%, #2c1410 100%);
+      color: white;
+      padding: 28px 36px;
+      border-radius: 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      border: 1px solid rgba(139, 30, 44, 0.3);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.2);
+    }
+
+    .mpesa h3 {
+      font-weight: 700;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .mpesa h3 i {
+      color: #fddb6d;
+    }
+
+    .mpesa p {
+      opacity: 0.8;
+      font-weight: 300;
+      margin-top: 4px;
+    }
+
+    .mpesa img {
+      height: 44px;
+      background: white;
+      padding: 6px 18px;
+      border-radius: 60px;
+      object-fit: contain;
+    }
+
+    /* ----- floating cart (maroon) ----- */
+    .cart-float {
+      position: fixed;
+      right: 28px;
+      bottom: 28px;
+      background: #8b1e2c;
+      color: white;
+      padding: 16px 24px;
+      border-radius: 60px;
+      font-size: 1.2rem;
+      box-shadow: 0 12px 36px rgba(139, 30, 44, 0.35);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      cursor: pointer;
+      transition: 0.25s;
+      border: none;
+      z-index: 99;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .cart-float:hover {
+      background: #a52a3a;
+      transform: scale(1.06);
+      box-shadow: 0 16px 48px rgba(139, 30, 44, 0.45);
+    }
+
+    .cart-float span {
+      background: #fff;
+      color: #8b1e2c;
+      border-radius: 40px;
+      padding: 0 14px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      min-width: 30px;
+      text-align: center;
+    }
+
+    /* ----- toast (maroon) ----- */
+    .toast {
+      position: fixed;
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: #1e0e0a;
+      color: white;
+      padding: 14px 34px;
+      border-radius: 60px;
+      font-weight: 500;
+      box-shadow: 0 12px 44px rgba(0, 0, 0, 0.35);
+      opacity: 0;
+      transition: all 0.4s ease;
+      pointer-events: none;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 0.95rem;
+      border: 1px solid rgba(139, 30, 44, 0.3);
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .toast i {
+      color: #fddb6d;
+      font-size: 1.2rem;
+    }
+
+    /* ----- RESPONSIVE ----- */
+    @media (max-width: 960px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 32px 28px;
+        text-align: center;
+      }
+      .hero p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 16px;
+      }
+      .hero h1 {
+        font-size: 34px;
+      }
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      .navbar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+      }
+      .nav-links {
+        justify-content: center;
+      }
+      .mpesa {
+        flex-direction: column;
+        text-align: center;
+      }
+      .cart-float {
+        right: 16px;
+        bottom: 16px;
+        padding: 12px 18px;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- NAV -->
+  <div class="navbar">
+    <div class="logo">
+      <img src="logo.jpeg" alt="Leefashions" style="height:40px; width:auto; margin-right:10px; border-radius: 12px;" />
+      Leefashions
+      <span>Stay Classy</span>
+    </div>
+    <div class="nav-links">
+      <a href="index.html" class="active"><i class="fas fa-home"></i>Home</a>
+      <a href="men.html"><i class="fas fa-male"></i>Men</a>
+      <a href="ladies.html"><i class="fas fa-female"></i>Ladies</a>
+      <a href="kids.html"><i class="fas fa-child"></i>Kids</a>
+      <a href="cart.html"><i class="fas fa-shopping-bag"></i>Cart</a>
+      <a href="contact.html"><i class="fas fa-envelope"></i>Contact</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div>
+      <h1>Step Into <span>Class</span> &amp; Style</h1>
+      <p>Premium sneakers and fashion footwear for men, women, and kids — designed for comfort and confidence.</p>
+      <a class="btn" href="#shop"><i class="fas fa-arrow-right"></i> Shop Now</a>
+    </div>
+    <div class="hero-image">
+      <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&h=400&fit=crop&crop=center&auto=format" alt="Hero shoes">
+    </div>
+  </div>
+
+  <!-- CATEGORY FILTER -->
+  <div class="categories" id="categoryFilter">
+    <div class="cat active" data-filter="all">All</div>
+    <div class="cat" data-filter="men">Men</div>
+    <div class="cat" data-filter="ladies">Ladies</div>
+    <div class="cat" data-filter="kids">Kids</div>
+  </div>
+
+  <!-- PRODUCTS -->
+  <div class="grid" id="products">
+
+    <!-- card 1 -->
+    <div class="card" data-type="men">
+      <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=300&fit=crop&crop=center&auto=format" alt="Men Runner Pro">
+      <span class="shoe-count"><i class="fas fa-shoe-prints"></i> 24</span>
+      <h3>Men Runner Pro</h3>
+      <div class="sub"><i class="fas fa-circle"></i> breathable mesh</div>
+      <div class="price">KSh 4,500 <small>KES</small></div>
+      <button class="add" onclick="addToCart('Men Runner Pro', 4500, this)"><i class="fas fa-plus-circle"></i> Add to Cart</button>
+    </div>
+
+    <!-- card 2 -->
+    <div class="card" data-type="ladies">
+      <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=400&h=300&fit=crop&crop=center&auto=format" alt="Ladies Elegance">
+      <span class="shoe-count"><i class="fas fa-shoe-prints"></i> 18</span>
+      <h3>Ladies Elegance</h3>
+      <div class="sub"><i class="fas fa-circle"></i> classic silhouette</div>
+      <div class="price">KSh 3,800 <small>KES</small></div>
+      <button class="add" onclick="addToCart('Ladies Elegance', 3800, this)"><i class="fas fa-plus-circle"></i> Add to Cart</button>
+    </div>
+
+    <!-- card 3 -->
+    <div class="card" data-type="kids">
+      <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400&h=300&fit=crop&crop=center&auto=format" alt="Kids Sport Fun">
+      <span class="shoe-count"><i class="fas fa-shoe-prints"></i> 31</span>
+      <h3>Kids Sport Fun</h3>
+      <div class="sub"><i class="fas fa-circle"></i> lightweight grip</div>
+      <div class="price">KSh 2,200 <small>KES</small></div>
+      <button class="add" onclick="addToCart('Kids Sport Fun', 2200, this)"><i class="fas fa-plus-circle"></i> Add to Cart</button>
+    </div>
+
+    <!-- card 4 -->
+    <div class="card" data-type="men">
+      <img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=400&h=300&fit=crop&crop=center&auto=format" alt="Classic Oxford">
+      <span class="shoe-count"><i class="fas fa-shoe-prints"></i> 12</span>
+      <h3>Classic Oxford</h3>
+      <div class="sub"><i class="fas fa-circle"></i> polished leather</div>
+      <div class="price">KSh 5,200 <small>KES</small></div>
+      <button class="add" onclick="addToCart('Classic Oxford', 5200, this)"><i class="fas fa-plus-circle"></i> Add to Cart</button>
+    </div>
+
+    <!-- card 5 -->
+    <div class="card" data-type="ladies">
+      <img src="https://images.unsplash.com/photo-1581019008025-8c4fa3cc4146?w=400&h=300&fit=crop&crop=center&auto=format" alt="Luxury Flat">
+      <span class="shoe-count"><i class="fas fa-shoe-prints"></i> 9</span>
+      <h3>Luxury Flat</h3>
+      <div class="sub"><i class="fas fa-circle"></i> ballerina chic</div>
+      <div class="price">KSh 2,800 <small>KES</small></div>
+      <button class="add" onclick="addToCart('Luxury Flat', 2800, this)"><i class="fas fa-plus-circle"></i> Add to Cart</button>
+    </div>
+
+    <!-- card 6 -->
+    <div class="card" data-type="kids">
+      <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=400&h=300&fit=crop&crop=center&auto=format" alt="Junior Runner">
+      <span class="shoe-count"><i class="fas fa-shoe-prints"></i> 22</span>
+      <h3>Junior Runner</h3>
+      <div class="sub"><i class="fas fa-circle"></i> cushioned sole</div>
+      <div class="price">KSh 2,500 <small>KES</small></div>
+      <button class="add" onclick="addToCart('Junior Runner', 2500, this)"><i class="fas fa-plus-circle"></i> Add to Cart</button>
+    </div>
+
+  </div>
+
+  <!-- M-PESA -->
+  <div class="mpesa">
+    <div>
+      <h3><i class="fas fa-mobile-alt"></i> Pay with M-Pesa</h3>
+      <p>Fast, secure checkout via mobile money</p>
+    </div>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/M-PESA_LOGO-01.svg" alt="M-Pesa">
+  </div>
+
+</div>
+
+<!-- floating cart -->
+<a href="cart.html" class="cart-float" id="cartFloat">
+  <i class="fas fa-shopping-bag"></i>
+  <span id="cartCount">0</span>
+</a>
+
+<!-- toast -->
+<div id="toast" class="toast">
+  <i class="fas fa-check-circle"></i>
+  <span id="toastMessage">Added to cart</span>
+</div>
+
+<script>
+  // ----- Cart state -----
+  let cart = [];
+  const cartCountEl = document.getElementById('cartCount');
+  const toastEl = document.getElementById('toast');
+  const toastMsg = document.getElementById('toastMessage');
+
+  // ----- Load cart from localStorage -----
+  function loadCart() {
+    try {
+      const stored = localStorage.getItem('leefashions_cart');
+      if (stored) {
+        cart = JSON.parse(stored);
+        cartCountEl.innerText = cart.length;
+      }
+    } catch {
+      cart = [];
+    }
+  }
+
+  // ----- Save cart to localStorage -----
+  function saveCart() {
+    localStorage.setItem('leefashions_cart', JSON.stringify(cart));
+    cartCountEl.innerText = cart.length;
+  }
+
+  // ----- Add to cart -----
+  function addToCart(name, price, buttonEl) {
+    cart.push({ name, price });
+    saveCart();
+
+    // toast
+    toastMsg.innerText = `${name} · KSh ${price.toLocaleString()}`;
+    toastEl.classList.add('show');
+    clearTimeout(window.toastTimeout);
+    window.toastTimeout = setTimeout(() => {
+      toastEl.classList.remove('show');
+    }, 2200);
+
+    // button feedback
+    if (buttonEl) {
+      buttonEl.style.transform = 'scale(0.92)';
+      setTimeout(() => { buttonEl.style.transform = ''; }, 150);
+    }
+  }
+
+  // ----- Category filter -----
+  document.querySelectorAll('.cat').forEach(cat => {
+    cat.addEventListener('click', function() {
+      document.querySelectorAll('.cat').forEach(c => c.classList.remove('active'));
+      this.classList.add('active');
+
+      const filter = this.dataset.filter;
+      document.querySelectorAll('.card').forEach(card => {
+        if (filter === 'all' || card.dataset.type === filter) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // ----- Dismiss toast on click -----
+  toastEl.addEventListener('click', () => {
+    toastEl.classList.remove('show');
+    clearTimeout(window.toastTimeout);
+  });
+
+  // ----- Image fallback -----
+  document.querySelectorAll('.card img').forEach(img => {
+    img.addEventListener('error', function() {
+      this.style.display = 'none';
+      const placeholder = document.createElement('div');
+      placeholder.style.cssText = 'width:100%;height:220px;background:#ede9e4;border-radius:16px;display:flex;align-items:center;justify-content:center;color:#b5aaa2;font-size:3rem;';
+      placeholder.innerHTML = '<i class="fas fa-shoe-prints"></i>';
+      this.parentNode.prepend(placeholder);
+    });
+  });
+
+  // ----- Init -----
+  loadCart();
+
+  // Sync cart across tabs
+  window.addEventListener('storage', (e) => {
+    if (e.key === 'leefashions_cart') {
+      loadCart();
+    }
+  });
+</script>
+
+</body>
+</html>

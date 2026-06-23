@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leefashions · Secure Checkout</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background: #faf7f5;
+      color: #1e1a17;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1240px;
+      margin: auto;
+      padding: 20px 28px 40px;
+    }
+
+    /* ----- NAVIGATION (maroon refined) ----- */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0 16px;
+      border-bottom: 1px solid rgba(139, 30, 44, 0.12);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .logo-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: inherit;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      transition: opacity 0.2s;
+    }
+
+    .logo-link:hover {
+      opacity: 0.85;
+    }
+
+    .logo-img {
+      height: 44px;
+      width: auto;
+      display: block;
+      border-radius: 10px;
+      object-fit: contain;
+      background: #ffffff;
+      padding: 2px 6px;
+      box-shadow: 0 2px 10px rgba(139, 30, 44, 0.08);
+    }
+
+    .logo-text {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .logo-text .brand {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: #2c0f0a;
+    }
+
+    .logo-text .tag {
+      font-size: 12px;
+      font-weight: 600;
+      background: #8b1e2c;
+      color: #fff;
+      padding: 4px 14px;
+      border-radius: 40px;
+      letter-spacing: 0.3px;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #2d2824;
+      font-weight: 500;
+      font-size: 0.95rem;
+      padding: 8px 16px;
+      border-radius: 40px;
+      transition: all 0.25s;
+    }
+
+    .nav-links a:hover {
+      background: #8b1e2c;
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(139, 30, 44, 0.2);
+    }
+
+    .nav-links a i {
+      margin-right: 6px;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a.active {
+      background: #8b1e2c;
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(139, 30, 44, 0.3);
+    }
+
+    /* ----- CHECKOUT (maroon accents) ----- */
+    .checkout-wrapper {
+      max-width: 620px;
+      margin: 32px auto 0;
+    }
+
+    .checkout-card {
+      background: #ffffff;
+      border-radius: 32px;
+      padding: 40px 38px 44px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.03);
+      border: 1px solid rgba(139, 30, 44, 0.06);
+    }
+
+    .checkout-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 4px;
+    }
+
+    .checkout-header i {
+      font-size: 2rem;
+      color: #8b1e2c;
+      background: rgba(139, 30, 44, 0.08);
+      padding: 12px;
+      border-radius: 16px;
+    }
+
+    .checkout-header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: #1e1a17;
+    }
+
+    .subhead {
+      color: #7a716b;
+      font-size: 0.95rem;
+      margin-bottom: 28px;
+      padding-left: 4px;
+      border-left: 3px solid #8b1e2c;
+      padding-left: 14px;
+    }
+
+    /* ----- ORDER SUMMARY (maroon) ----- */
+    .order-summary {
+      background: #f8f6f3;
+      border-radius: 20px;
+      padding: 18px 22px;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      border: 1px solid rgba(139, 30, 44, 0.06);
+    }
+
+    .order-summary .label {
+      font-weight: 500;
+      color: #4a423d;
+      font-size: 0.9rem;
+    }
+
+    .order-summary .total {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: #8b1e2c;
+    }
+
+    .order-summary .total small {
+      font-weight: 400;
+      font-size: 0.85rem;
+      color: #7a716b;
+      margin-left: 4px;
+    }
+
+    /* ----- M-PESA BRAND ----- */
+    .mpesa-brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      padding: 14px 18px;
+      background: linear-gradient(135deg, #f8f4f2 0%, #f0ebe7 100%);
+      border-radius: 18px;
+      border: 1px solid rgba(139, 30, 44, 0.08);
+    }
+
+    .mpesa-brand img {
+      height: 48px;
+      object-fit: contain;
+      background: white;
+      padding: 6px 18px;
+      border-radius: 40px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    .mpesa-brand .info {
+      font-size: 0.9rem;
+      color: #2d4a3e;
+    }
+
+    .mpesa-brand .info strong {
+      display: block;
+      font-weight: 600;
+      color: #2c1410;
+    }
+
+    .mpesa-brand .info strong i {
+      color: #00a651;
+    }
+
+    /* ----- FORM (with new fields) ----- */
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #2d2824;
+      margin-bottom: 6px;
+    }
+
+    .form-group label i {
+      color: #8b1e2c;
+      margin-right: 8px;
+    }
+
+    .input-wrapper {
+      display: flex;
+      align-items: center;
+      background: #f8f6f3;
+      border-radius: 60px;
+      padding: 0 6px 0 20px;
+      border: 2px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .input-wrapper:focus-within {
+      border-color: #8b1e2c;
+      background: #ffffff;
+      box-shadow: 0 0 0 4px rgba(139, 30, 44, 0.08);
+    }
+
+    .input-wrapper i {
+      color: #9a8f88;
+      font-size: 1.1rem;
+    }
+
+    .input-wrapper input,
+    .input-wrapper select {
+      width: 100%;
+      padding: 16px 14px;
+      border: none;
+      background: transparent;
+      font-size: 1rem;
+      font-family: "Inter", sans-serif;
+      font-weight: 500;
+      outline: none;
+      color: #1e1a17;
+    }
+
+    .input-wrapper input::placeholder,
+    .input-wrapper select {
+      color: #b3a8a0;
+      font-weight: 400;
+    }
+
+    .input-wrapper select {
+      appearance: none;
+      cursor: pointer;
+    }
+
+    .input-wrapper .country-code {
+      font-weight: 600;
+      color: #4a423d;
+      font-size: 0.95rem;
+      padding-right: 4px;
+    }
+
+    .hint-text {
+      font-size: 0.8rem;
+      color: #9a8f88;
+      margin-top: 6px;
+      padding-left: 20px;
+    }
+
+    .hint-text i {
+      margin-right: 6px;
+      color: #8b1e2c;
+    }
+
+    /* ----- TRACKING PROGRESS (new) ----- */
+    .tracking-section {
+      margin: 24px 0 20px;
+      padding: 20px 22px;
+      background: #f8f6f3;
+      border-radius: 20px;
+      border: 1px solid rgba(139, 30, 44, 0.06);
+      display: none;
+    }
+
+    .tracking-section.active {
+      display: block;
+    }
+
+    .tracking-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .tracking-header .status {
+      font-weight: 600;
+      color: #8b1e2c;
+      font-size: 0.95rem;
+    }
+
+    .tracking-header .status i {
+      margin-right: 6px;
+    }
+
+    .tracking-header .order-ref {
+      font-size: 0.8rem;
+      color: #8a7f79;
+      background: white;
+      padding: 4px 14px;
+      border-radius: 40px;
+      font-weight: 500;
+    }
+
+    .progress-track {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      padding: 8px 0;
+    }
+
+    .progress-track::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 20px;
+      right: 20px;
+      height: 3px;
+      background: #e8e2db;
+      transform: translateY(-50%);
+      border-radius: 4px;
+      z-index: 0;
+    }
+
+    .progress-track .step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      z-index: 1;
+      flex: 1;
+    }
+
+    .progress-track .step .dot {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #e8e2db;
+      border: 3px solid #e8e2db;
+      transition: all 0.5s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.6rem;
+      color: white;
+    }
+
+    .progress-track .step .dot.active {
+      background: #8b1e2c;
+      border-color: #8b1e2c;
+      box-shadow: 0 0 0 4px rgba(139, 30, 44, 0.15);
+    }
+
+    .progress-track .step .dot.completed {
+      background: #00a651;
+      border-color: #00a651;
+    }
+
+    .progress-track .step .dot.completed i {
+      color: white;
+      font-size: 0.6rem;
+    }
+
+    .progress-track .step .label {
+      font-size: 0.65rem;
+      color: #8a7f79;
+      font-weight: 500;
+      text-align: center;
+      max-width: 60px;
+      line-height: 1.2;
+    }
+
+    .progress-track .step .label.active {
+      color: #8b1e2c;
+      font-weight: 600;
+    }
+
+    .progress-track .step .label.completed {
+      color: #00a651;
+    }
+
+    /* ----- BUTTON (maroon) ----- */
+    .btn-pay {
+      width: 100%;
+      padding: 18px;
+      background: #8b1e2c;
+      color: white;
+      border: none;
+      border-radius: 60px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      font-family: "Inter", sans-serif;
+      margin-top: 8px;
+      box-shadow: 0 6px 20px rgba(139, 30, 44, 0.25);
+    }
+
+    .btn-pay i {
+      font-size: 1.2rem;
+    }
+
+    .btn-pay:hover {
+      background: #a52a3a;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(139, 30, 44, 0.35);
+    }
+
+    .btn-pay:active {
+      transform: scale(0.97);
+    }
+
+    .btn-pay:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    /* ----- SECURE BADGE ----- */
+    .secure-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 24px;
+      color: #8a7f79;
+      font-size: 0.85rem;
+    }
+
+    .secure-badge i {
+      color: #00a651;
+      font-size: 1.1rem;
+    }
+
+    .secure-badge i.fa-credit-card {
+      color: #8b1e2c;
+    }
+
+    /* ----- M-PESA FOOTER (maroon undertone) ----- */
+    .mpesa-footer {
+      margin-top: 56px;
+      background: linear-gradient(145deg, #1e0e0a 0%, #2c1410 100%);
+      color: white;
+      padding: 28px 36px;
+      border-radius: 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      border: 1px solid rgba(139, 30, 44, 0.3);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.2);
+    }
+
+    .mpesa-footer h3 {
+      font-weight: 700;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .mpesa-footer h3 i {
+      color: #fddb6d;
+    }
+
+    .mpesa-footer p {
+      opacity: 0.8;
+      font-weight: 300;
+      margin-top: 4px;
+    }
+
+    .mpesa-footer .mpesa-logo {
+      height: 48px;
+      width: auto;
+      background: white;
+      padding: 6px 20px;
+      border-radius: 60px;
+      object-fit: contain;
+      display: block;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    /* ----- TOAST (maroon) ----- */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: #1e0e0a;
+      color: white;
+      padding: 16px 34px;
+      border-radius: 60px;
+      font-weight: 500;
+      box-shadow: 0 12px 44px rgba(0, 0, 0, 0.35);
+      opacity: 0;
+      transition: all 0.4s ease;
+      pointer-events: none;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 0.95rem;
+      border: 1px solid rgba(139, 30, 44, 0.3);
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .toast i {
+      color: #fddb6d;
+      font-size: 1.3rem;
+    }
+
+    .toast.error {
+      background: #2c1410;
+      border-color: #8b1e2c;
+    }
+
+    .toast.error i {
+      color: #e6a28c;
+    }
+
+    /* ----- RESPONSIVE ----- */
+    @media (max-width: 960px) {
+      .checkout-card {
+        padding: 32px 28px 36px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 16px;
+      }
+      .navbar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+      }
+      .nav-links {
+        justify-content: center;
+      }
+      .checkout-card {
+        padding: 24px 18px 28px;
+      }
+      .checkout-header h1 {
+        font-size: 1.6rem;
+      }
+      .order-summary .total {
+        font-size: 1.2rem;
+      }
+      .mpesa-brand {
+        flex-direction: column;
+        text-align: center;
+      }
+      .mpesa-footer {
+        flex-direction: column;
+        text-align: center;
+      }
+      .mpesa-footer .mpesa-logo {
+        height: 40px;
+        padding: 4px 14px;
+      }
+      .logo-img {
+        height: 36px;
+      }
+      .logo-text .brand {
+        font-size: 22px;
+      }
+      .progress-track .step .label {
+        font-size: 0.55rem;
+        max-width: 45px;
+      }
+      .progress-track .step .dot {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- NAV -->
+  <div class="navbar">
+    <a href="index.html" class="logo-link">
+      <img src="logo.jpeg" alt="Leefashions" class="logo-img" />
+      <div class="logo-text">
+        <span class="brand">Leefashions</span>
+        <span class="tag">Stay Classy</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="index.html"><i class="fas fa-home"></i>Home</a>
+      <a href="men.html"><i class="fas fa-male"></i>Men</a>
+      <a href="ladies.html"><i class="fas fa-female"></i>Ladies</a>
+      <a href="kids.html"><i class="fas fa-child"></i>Kids</a>
+      <a href="cart.html"><i class="fas fa-shopping-bag"></i>Cart</a>
+      <a href="contact.html"><i class="fas fa-envelope"></i>Contact</a>
+    </div>
+  </div>
+
+  <!-- CHECKOUT -->
+  <div class="checkout-wrapper">
+    <div class="checkout-card">
+
+      <div class="checkout-header">
+        <i class="fas fa-lock"></i>
+        <h1>Checkout</h1>
+      </div>
+      <div class="subhead">Complete your purchase securely</div>
+
+      <!-- ORDER SUMMARY -->
+      <div class="order-summary">
+        <span class="label"><i class="fas fa-shopping-bag" style="margin-right:8px;"></i>Total order</span>
+        <span class="total" id="orderTotal">KSh 0 <small>KES</small></span>
+      </div>
+
+      <!-- M-PESA BRAND -->
+      <div class="mpesa-brand">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/M-PESA_LOGO-01.svg" alt="M-Pesa">
+        <div class="info">
+          <strong><i class="fas fa-check-circle"></i> Pay with M-Pesa</strong>
+          Fast, secure &amp; convenient
+        </div>
+      </div>
+
+      <!-- FORM -->
+      <form id="checkoutForm" onsubmit="handlePayment(event)">
+        <!-- Full Name -->
+        <div class="form-group">
+          <label for="fullName"><i class="fas fa-user"></i> Full Name</label>
+          <div class="input-wrapper">
+            <i class="fas fa-user-circle" style="padding-left:4px;"></i>
+            <input
+              type="text"
+              id="fullName"
+              placeholder="John Doe"
+              required
+              autocomplete="name"
+            />
+          </div>
+        </div>
+
+        <!-- Delivery Location -->
+        <div class="form-group">
+          <label for="deliveryLocation"><i class="fas fa-map-marker-alt"></i> Delivery Location</label>
+          <div class="input-wrapper">
+            <i class="fas fa-location-dot"></i>
+            <input
+              type="text"
+              id="deliveryLocation"
+              placeholder="Nairobi, Westlands, Kenya"
+              required
+              autocomplete="address-level2"
+            />
+          </div>
+          <div class="hint-text">
+            <i class="fas fa-info-circle"></i> Enter your city, area or specific address
+          </div>
+        </div>
+
+        <!-- Phone -->
+        <div class="form-group">
+          <label for="phoneInput"><i class="fas fa-phone"></i> M-Pesa Phone Number</label>
+          <div class="input-wrapper">
+            <span class="country-code">+254</span>
+            <input
+              type="tel"
+              id="phoneInput"
+              placeholder="712 345 678"
+              required
+              pattern="[0-9]{9}"
+              title="Enter 9-digit phone number (e.g. 712345678)"
+              autocomplete="tel"
+            />
+            <i class="fas fa-chevron-right" style="padding-right:16px;color:#8b1e2c;"></i>
+          </div>
+          <div class="hint-text">
+            <i class="fas fa-info-circle"></i> Enter 9 digits (e.g. 712345678)
+          </div>
+        </div>
+
+        <!-- TRACKING PROGRESS (hidden initially) -->
+        <div class="tracking-section" id="trackingSection">
+          <div class="tracking-header">
+            <span class="status"><i class="fas fa-shipping-fast"></i> Order Tracking</span>
+            <span class="order-ref" id="orderRef">#LEE-2026-001</span>
+          </div>
+          <div class="progress-track" id="progressTrack">
+            <div class="step" data-step="0">
+              <div class="dot"><i class="fas fa-check" style="display:none;"></i></div>
+              <span class="label">Order Placed</span>
+            </div>
+            <div class="step" data-step="1">
+              <div class="dot"><i class="fas fa-check" style="display:none;"></i></div>
+              <span class="label">Processing</span>
+            </div>
+            <div class="step" data-step="2">
+              <div class="dot"><i class="fas fa-check" style="display:none;"></i></div>
+              <span class="label">Shipped</span>
+            </div>
+            <div class="step" data-step="3">
+              <div class="dot"><i class="fas fa-check" style="display:none;"></i></div>
+              <span class="label">Delivered</span>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-pay" id="payBtn">
+          <i class="fas fa-mobile-alt"></i> Pay with M-Pesa
+        </button>
+      </form>
+
+      <!-- SECURE BADGE -->
+      <div class="secure-badge">
+        <i class="fas fa-shield-alt"></i>
+        <span>Secured by Leefashions · SSL encrypted</span>
+        <i class="fas fa-credit-card" style="margin-left:4px;"></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- M-PESA FOOTER -->
+  <div class="mpesa-footer">
+    <div>
+      <h3><i class="fas fa-mobile-alt"></i> Pay with M-Pesa</h3>
+      <p>Fast, secure checkout via mobile money</p>
+    </div>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/M-PESA_LOGO-01.svg" alt="M-Pesa" class="mpesa-logo">
+  </div>
+
+</div>
+
+<!-- TOAST -->
+<div id="toast" class="toast">
+  <i class="fas fa-check-circle"></i>
+  <span id="toastMessage">Payment initiated</span>
+</div>
+
+<script>
+  // ----- Calculate cart total from localStorage -----
+  let cartTotal = 0;
+
+  try {
+    const storedCart = JSON.parse(localStorage.getItem('leefashions_cart') || '[]');
+    if (storedCart.length > 0) {
+      cartTotal = storedCart.reduce((sum, item) => sum + (Number(item.price) || 0), 0);
+    }
+  } catch {
+    cartTotal = 0;
+  }
+
+  // If cart is empty, show sample total
+  if (cartTotal === 0) {
+    cartTotal = 12900;
+  }
+
+  // Update the order total
+  document.getElementById('orderTotal').innerHTML =
+    `KSh ${cartTotal.toLocaleString()} <small>KES</small>`;
+
+  // ----- Toast elements -----
+  const toastEl = document.getElementById('toast');
+  const toastMsg = document.getElementById('toastMessage');
+  const payBtn = document.getElementById('payBtn');
+  const trackingSection = document.getElementById('trackingSection');
+  const progressTrack = document.getElementById('progressTrack');
+  const orderRef = document.getElementById('orderRef');
+
+  // ----- Tracking progress -----
+  let currentStep = 0;
+  const totalSteps = 3;
+
+  function updateProgress(step) {
+    const steps = progressTrack.querySelectorAll('.step');
+    steps.forEach((el, index) => {
+      const dot = el.querySelector('.dot');
+      const label = el.querySelector('.label');
+      const checkIcon = dot.querySelector('i');
+
+      // Reset
+      dot.classList.remove('active', 'completed');
+      label.classList.remove('active', 'completed');
+      if (checkIcon) checkIcon.style.display = 'none';
+
+      if (index < step) {
+        // Completed
+        dot.classList.add('completed');
+        label.classList.add('completed');
+        if (checkIcon) {
+          checkIcon.style.display = 'block';
+          checkIcon.className = 'fas fa-check';
+        }
+      } else if (index === step) {
+        // Active
+        dot.classList.add('active');
+        label.classList.add('active');
+      }
+    });
+  }
+
+  // Generate random order reference
+  function generateOrderRef() {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let ref = '#LEE-';
+    for (let i = 0; i < 6; i++) {
+      ref += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return ref;
+  }
+
+  // ----- Handle payment -----
+  function handlePayment(e) {
+    e.preventDefault();
+
+    const fullName = document.getElementById('fullName').value.trim();
+    const deliveryLocation = document.getElementById('deliveryLocation').value.trim();
+    const phoneInput = document.getElementById('phoneInput');
+    const phone = phoneInput.value.trim();
+
+    // Validate name
+    if (!fullName || fullName.length < 2) {
+      document.getElementById('fullName').focus();
+      document.getElementById('fullName').closest('.input-wrapper').style.borderColor = '#8b1e2c';
+      showToast('⚠️ Please enter your full name', 'error');
+      return;
+    }
+
+    // Validate delivery location
+    if (!deliveryLocation || deliveryLocation.length < 3) {
+      document.getElementById('deliveryLocation').focus();
+      document.getElementById('deliveryLocation').closest('.input-wrapper').style.borderColor = '#8b1e2c';
+      showToast('⚠️ Please enter a delivery location', 'error');
+      return;
+    }
+
+    // Validate phone
+    if (!phone || !/^\d{9}$/.test(phone)) {
+      phoneInput.focus();
+      phoneInput.closest('.input-wrapper').style.borderColor = '#8b1e2c';
+      showToast('⚠️ Please enter a valid 9-digit phone number', 'error');
+      return;
+    }
+
+    // Reset borders
+    document.querySelectorAll('.input-wrapper').forEach(el => el.style.borderColor = 'transparent');
+
+    // Show tracking section
+    trackingSection.classList.add('active');
+    orderRef.textContent = generateOrderRef();
+
+    // Simulate payment processing
+    const fullNumber = `+254${phone}`;
+    showToast(`📱 Initiating payment for ${fullNumber}`);
+
+    // Disable button
+    payBtn.disabled = true;
+    payBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+
+    // Simulate order progress
+    let step = 0;
+    updateProgress(step);
+
+    const progressInterval = setInterval(() => {
+      step++;
+      if (step <= totalSteps) {
+        updateProgress(step);
+        if (step === 1) showToast('📦 Order confirmed! Processing your order...');
+        if (step === 2) showToast('🚚 Your order has been shipped!');
+        if (step === 3) {
+          showToast(`✅ Order delivered to ${deliveryLocation}! Thank you ${fullName}!`);
+          clearInterval(progressInterval);
+
+          // Reset button
+          payBtn.disabled = false;
+          payBtn.innerHTML = '<i class="fas fa-mobile-alt"></i> Pay with M-Pesa';
+
+          // Update order summary
+          document.querySelector('.order-summary .label').innerHTML =
+            '<i class="fas fa-check-circle" style="color:#00a651;margin-right:8px;"></i> Delivered';
+
+          // Clear cart
+          localStorage.removeItem('leefashions_cart');
+
+          // Optionally redirect or show success
+        }
+      } else {
+        clearInterval(progressInterval);
+      }
+    }, 2000);
+
+    // Final safety timeout
+    setTimeout(() => {
+      if (payBtn.disabled) {
+        payBtn.disabled = false;
+        payBtn.innerHTML = '<i class="fas fa-mobile-alt"></i> Pay with M-Pesa';
+      }
+    }, 10000);
+  }
+
+  // ----- Show toast helper -----
+  function showToast(message, type = 'default') {
+    toastMsg.innerText = message;
+    toastEl.className = 'toast';
+    if (type === 'error') {
+      toastEl.classList.add('error');
+    }
+    toastEl.classList.add('show');
+
+    clearTimeout(window.toastTimeout);
+    window.toastTimeout = setTimeout(() => {
+      toastEl.classList.remove('show');
+      toastEl.classList.remove('error');
+    }, 4000);
+  }
+
+  // ----- Dismiss toast on click -----
+  toastEl.addEventListener('click', () => {
+    toastEl.classList.remove('show');
+    toastEl.classList.remove('error');
+    clearTimeout(window.toastTimeout);
+  });
+
+  // ----- Real-time formatting -----
+  document.getElementById('phoneInput').addEventListener('input', function() {
+    this.value = this.value.replace(/\D/g, '').slice(0, 9);
+    this.closest('.input-wrapper').style.borderColor = 'transparent';
+  });
+
+  document.getElementById('fullName').addEventListener('input', function() {
+    this.closest('.input-wrapper').style.borderColor = 'transparent';
+  });
+
+  document.getElementById('deliveryLocation').addEventListener('input', function() {
+    this.closest('.input-wrapper').style.borderColor = 'transparent';
+  });
+
+  // ----- Init with sample progress for demo (optional) -----
+  // Uncomment below to show tracking on load for demo
+  // trackingSection.classList.add('active');
+  // updateProgress(1);
+  // orderRef.textContent = generateOrderRef();
+</script>
+
+</body>
+</html>
